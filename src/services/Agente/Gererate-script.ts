@@ -4,12 +4,10 @@ import { chatbaseConfig } from "../../config/chatbase.config";
 import { IScriptRequest } from "../../models/scriptRequest.model";
 import { IScriptResponse } from "../../models/scriptResponse.model";
 
-// Interface estendida para incluir rawResponse opcional
 interface IExtendedScriptResponse extends IScriptResponse {
   rawResponse?: any;
 }
 
-// Interface para o payload da Chatbase
 interface IChatbasePayload {
   messages: Array<{
     role: string;
@@ -20,7 +18,6 @@ interface IChatbasePayload {
 }
 
 export const generateScript = async (req: Request, res: Response): Promise<void> => {
-  // Função helper para construir o prompt
   const buildChatbasePrompt = (prompt: string, category: string, tone: string, variables: Record<string, string>): string => {
     return `Por favor, gere um script para WhatsApp com:
             Tema: ${prompt}
@@ -30,9 +27,8 @@ export const generateScript = async (req: Request, res: Response): Promise<void>
             Formato: Título\n\nConteúdo`;
   };
 
-  // Função helper para processar a resposta
   const parseChatbaseResponse = (data: any, originalPrompt: string, category: string, tone: string): IExtendedScriptResponse => {
-    if (!data?.text) { // Alterado para verificar 'text' que é o campo padrão de resposta
+    if (!data?.text) {
       throw new Error('Resposta da API inválida');
     }
 
@@ -60,12 +56,10 @@ export const generateScript = async (req: Request, res: Response): Promise<void>
       return;
     }
 
-    // Verificação da configuração
     if (!chatbaseConfig.apiKey || !chatbaseConfig.chatbotId || !chatbaseConfig.baseUrl) {
       throw new Error('Configuração do Chatbase incompleta');
     }
 
-    // Construção do payload CORRIGIDO
     const payload: IChatbasePayload = {
       messages: [
         {
@@ -77,14 +71,11 @@ export const generateScript = async (req: Request, res: Response): Promise<void>
       stream: false
     };
 
-    // Headers ajustados
     const headers = {
       'Authorization': `Bearer ${chatbaseConfig.apiKey}`,
       'Content-Type': 'application/json',
-      // Removido o Chatbot-ID duplicado dos headers (já está no payload)
     };
 
-    // Chamada à API com timeout
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 15000);
 

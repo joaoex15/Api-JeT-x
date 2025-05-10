@@ -1,7 +1,7 @@
 // src/routes/GetScriptByCategoria.ts
 import { Request, Response } from "express";
-import { supabase } from "../../Data/superbaseData"; // Supondo que o supabase está configurado corretamente
-import { Script } from "../../models/script"; // Importando o modelo Script
+import { supabase } from "../../Data/superbaseData"; 
+import { Script } from "../../models/script"; 
 
 export const getScriptByCategoria = async (req: Request, res: Response): Promise<void> => {
   const { categoria } = req.params;

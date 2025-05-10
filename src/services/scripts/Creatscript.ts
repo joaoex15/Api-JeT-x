@@ -1,7 +1,7 @@
 // src/routes/CreateScript.ts
 import { Request, Response } from "express";
-import { supabase } from "../../Data/superbaseData"; // Supondo que o supabaseClient está em ../supabaseClient
-import { Script } from "../../models/script"; // Modelo Script que você criou
+import { supabase } from "../../Data/superbaseData"; 
+import { Script } from "../../models/script";
 
 export const createScript = async (req: Request, res: Response): Promise<void> => {
   const { titulo, conteudo, categoria }: Script = req.body;
@@ -16,17 +16,16 @@ export const createScript = async (req: Request, res: Response): Promise<void> =
   const { data, error } = await supabase
     .from("scripts")
     .insert([{ titulo, conteudo, categoria }])
-    .select(); // O '.select()' garante que os dados inseridos sejam retornados
+    .select(); 
 
-  // Verifica se houve erro
+
   if (error) {
     res.status(500).json({ error: error.message });
     return;
   }
 
-  // Retorna os dados inseridos (script criado)
   res.status(201).json({
     message: "Script criado com sucesso!",
-    data: data ? data[0] : null, // Retorna o primeiro item do array de dados inseridos
+    data: data ? data[0] : null,
   });
 };

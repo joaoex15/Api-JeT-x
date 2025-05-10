@@ -9,7 +9,6 @@ export const chatbaseConfig = {
     }
   };
   
-  // Verificação das variáveis obrigatórias
   if (!chatbaseConfig.apiKey || !chatbaseConfig.chatbotId || !chatbaseConfig.baseUrl) {
     throw new Error('Configuração do Chatbase incompleta - verifique suas variáveis de ambiente');
   }

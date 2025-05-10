@@ -12,7 +12,7 @@ export const editpScript = async (req: Request, res: Response): Promise<void> =>
   }
 
   const { data, error } = await supabase
-    .from("scripts")  // A tabela "scripts" não precisa de tipos explícitos aqui
+    .from("scripts")  
     .update({ titulo, conteudo })
     .eq("id", id)
     .select();
@@ -29,6 +29,6 @@ export const editpScript = async (req: Request, res: Response): Promise<void> =>
 
   res.status(200).json({
     message: "Script atualizado com sucesso!",
-    data: data[0] // Acessando o primeiro item da resposta
+    data: data[0] 
   });
 };
