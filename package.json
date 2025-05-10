@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:watch": "tsx watch --env-file=.env src/server.ts"
+    "start:watch": "tsx watch --env-file=.env src/server.ts",
+    "start:watch-js": "node --env-file=.env dist/server.js"
+
   },
   "keywords": [],
   "author": "",
@@ -19,8 +21,10 @@
   "devDependencies": {
     "@types/cors": "^2.8.18",
     "@types/express": "^5.0.1",
+    "@types/node": "^22.15.17",
     "@types/pg": "^8.15.0",
     "tsx": "^4.19.4",
-    "typerscript": "^0.2.3"
+    "typerscript": "^0.2.3",
+    "typescript": "^5.8.3"
   }
 }

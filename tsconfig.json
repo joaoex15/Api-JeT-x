@@ -1,10 +1,13 @@
 {
   "compilerOptions": {
-
-    "target": "ES2016",
-    "module": "CommonJS",
-    "strict": true,
-    "esModuleInterop":true,
-    "outDir": "./dist"
-   }
+    "target": "ES6",               // O código JavaScript gerado será compatível com o ECMAScript 6
+    "module": "CommonJS",          // O TypeScript vai compilar para módulos CommonJS (padrão do Node.js)
+    "outDir": "./dist",            // O código compilado vai para a pasta 'dist'
+    "esModuleInterop": true,       // Permite importar módulos com 'import'
+    "skipLibCheck": true,          // Ignora a verificação de tipo dos arquivos de declaração de biblioteca
+    "forceConsistentCasingInFileNames": true, // Força o uso de maiúsculas e minúsculas consistentes
+    "strict": true                 // Ativa o modo estrito, verificando erros no código
+  },
+  "include": ["src/**/*.ts"],        // Inclui todos os arquivos .ts da pasta src
+  "exclude": ["node_modules"]        // Exclui a pasta node_modules da compilação
 }
